@@ -29,6 +29,15 @@ class Alojamiento {
 
     estasDisponibleEn(rangoDeFechas) {
         // TODO Implementar lógica
+        // Los datos de tipo Date se pueden comparar directamente con operadores <, >, =....
+        // ? Propongo algo tipo esto y comparar los dias de la reserva con ese rango (si uno es true, q de false (no se la sintaxis xd))
+        /*
+        return !this.reservas.any(
+            unaReserva => unaReserva.coincidenLosDias(rangoDeFechas)
+        )
+        */
+
+
     }
 
     tuPrecioEstaDentroDe(valorMinimo, valorMaximo) {
@@ -37,10 +46,12 @@ class Alojamiento {
 
     tenesCaracteristica(caracteristica) {
         // TODO Implementar lógica
+        // ? return this.caracteristicas.includes(caracteristica)
     }
 
     puedenAlojarse(cantHuespedes) {
         // TODO Implementar lógica
+        // ? return cantHuespedes <= this.cantHuespedesMax
     }
 }
 
