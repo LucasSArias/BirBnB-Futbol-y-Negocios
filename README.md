@@ -26,3 +26,7 @@ BIRBNB
           node_modules que se genera al instalar al repostorio  
 
         > Pendiente : FactoryNotificacion, revisar endpoint y explicar GitFlow
+
+    🔳 v0.3.1
+        
+        - Hotfix: El primer endpoint funciona como debe
