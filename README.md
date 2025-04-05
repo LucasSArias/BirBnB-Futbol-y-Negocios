@@ -20,3 +20,9 @@ BIRBNB
             -   marcarComoLeida()
         > Pendiente : FactoryNotificacion, revisar endpoint y explicar GitFlow
 
+    🔳 v0.3.0 
+        
+        - Agrego el package.json, el lock.json y el gitIgnore para que no se pushee la carpeta 
+          node_modules que se genera al instalar al repostorio  
+
+        > Pendiente : FactoryNotificacion, revisar endpoint y explicar GitFlow
