@@ -1,6 +1,7 @@
-require('./handlers')
+require('./handlers.js')
 
 const express = require('express');
+const { serverOk } = require('./handlers');
 const app = express();
 const port = 9000 // * Puerto arbitrario para el servidor
 
