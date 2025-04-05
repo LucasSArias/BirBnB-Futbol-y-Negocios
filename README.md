@@ -3,7 +3,9 @@ BIRBNB
 
 ### Jeremias Bartolsic, Thiago Perez Giacchetta, Lucas Sebastian Arias, Tomás Bühler, Nicolas Agüero
 
-## PRIMERA ENTREGA
-- Implementar metodos
-- Revisar clases
-- Confiamos en el endopint de lukitas
+## Progreso
+
+    🔳 v0.1.0 
+        > Diagrama de clases llevado a codigo (Clases, ENUM's)
+        > Pendiente : Realizar metodos, revisar endpoint y explicar GitFlow 
+
