@@ -28,14 +28,13 @@ class Alojamiento {
     }
 
     estasDisponibleEn(rangoDeFechas) {
-        // TODO Implementar lógica
         // Los datos de tipo Date se pueden comparar directamente con operadores <, >, =....
         // ? Propongo algo tipo esto y comparar los dias de la reserva con ese rango (si uno es true, q de false (no se la sintaxis xd))
-        
+
         return this.reservas.some(
             unaReserva => unaReserva.estaLibreEn(rangoDeFechas)
         )
-        
+
 
 
     }
@@ -84,16 +83,16 @@ class Pais {
 }
 
 class Reserva {
-    constructor(fechaAlta, huesped, alojamiento, rangoFechas, estado, precioPorNoche) {
+    constructor(fechaAlta, huespedReservador, alojamiento, rangoFechas, estado, precioPorNoche) {
         this.fechaAlta = fechaAlta;           // Date
-        this.huesped = huesped;               // Usuario
+        this.huespedReservador = huespedReservador;               // Usuario
         this.alojamiento = alojamiento;       // Alojamiento
         this.rangoFechas = rangoFechas;       // RangoFechas
         this.estado = estado;                 // EstadoReserva
         this.precioPorNoche = precioPorNoche; // Double
     }
 
-    actualizarEstado(EstadoReserva) { 
+    actualizarEstado(EstadoReserva) {
         // Imagino que actualizar estado es el setter del atributo estado (CONSULTAR)
         this.estado = EstadoReserva
     }
@@ -101,7 +100,7 @@ class Reserva {
     estaLibreEn(fechaSolicitada) {
         // Verdadero en caso que la fecha solicitada sea antes de una reserva existente
         let fechaLibreAntes = fechaSolicitada.fechaFin < this.fechaAlta.fechaInicio
-        
+
         // Verdadero en caso de que la fecha solicitada sea despues de una reserva existente
         let fechaLibreDespues = fechaSolicitada.fechaInicio > this.fechaAlta.fechaFin
 
@@ -109,10 +108,10 @@ class Reserva {
         return fechaLibreAntes || fechaLibreDespues
     }
 
-
-
-
-
+    get anfitrion() {
+        return this.alojamiento.anfitrion
+    }
+    
 }
 
 class RangoFechas {
@@ -133,28 +132,58 @@ class CambioEstadoReserva {
 }
 
 class FactoryNotificacion {
-    crearMensajeSegunEstadoReserva(estado) {
-        // TODO implementar 
+    mensajeSegunEstado(estado) {
+        switch (estado) {
+            case EstadoReserva.PENDIENTE:
+                return "Su reserva está pendiente de confirmación.";
+            case EstadoReserva.CONFIRMADA:
+                return "Su reserva ha sido confirmada.";
+            case EstadoReserva.CANCELADA:
+                return "Su reserva ha sido cancelada.";
+            default:
+                return "Estado de reserva desconocido.";
+        }
+
+    }
+
+    usuarioSegunEstado(reserva) {
+        switch (reserva.estado) {
+            case EstadoReserva.PENDIENTE:
+                return reserva.anfitrion
+            case EstadoReserva.CONFIRMADA: 
+                return reserva.huespedReservador
+            case EstadoReserva.CANCELADA:
+                return reserva.anfitrion
+    
+        }
     }
 
     crearSegunReserva(reserva) {
-        // TODO implementar
+        return new Notificacion(mensajeSegunEstado(reserva.estado), usuarioSegunEstado(reserva), new Date())  //? FechaAlta es la fecha en la que se crea la notificación?
     }
+    
+    
 }
 
 class Notificacion {
-    constructor(mensaje, usuario, fechaalta, leida, fechaLeida) {
+    
+    #fechaLeida 
+    constructor(mensaje, usuario, fechaAlta) {
         this.mensaje = mensaje;       // String
         this.usuario = usuario;       // Usuario
-        this.fechaalta = fechaalta;   // Date
-        this.leida = leida;           // Boolean
-        this.fechaLeida = fechaLeida; // Date
+        this.fechaAlta = fechaAlta;   // Date
+        this.leida = false;           // Boolean
+        // this.fechaLeida = fechaLeida; // Date
     }
-
+    
     marcarComoLeida() {
         // Setter de atributo "leida" 
         this.leida = true
         this.fechaLeida = new Date()
+    }
+
+    get fechaLeida() {
+        return this.#fechaLeida
     }
 }
 

@@ -30,3 +30,12 @@ BIRBNB
     🔳 v0.3.1
         
         - Hotfix: El primer endpoint funciona como debe
+    
+    🔳 v0.4.0
+        
+        - Se agregaron los métodos mensajeSegunEstado y usuarioSegunEstado en la clase FactoryNotification
+        - Se modificaron los constructores de Notificacion y Reserva
+        - Se agrego el getter de anfitrion en Reserva
+        - Se agrego el getter de fecha leida en Notificacion
+
+        > Pendiente : Determinar comportamiento del sistema, consultar atributo FechaAlta en Notificacion y explicar GitFlow
