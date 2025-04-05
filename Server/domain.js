@@ -31,27 +31,25 @@ class Alojamiento {
         // TODO Implementar lógica
         // Los datos de tipo Date se pueden comparar directamente con operadores <, >, =....
         // ? Propongo algo tipo esto y comparar los dias de la reserva con ese rango (si uno es true, q de false (no se la sintaxis xd))
-        /*
-        return !this.reservas.any(
-            unaReserva => unaReserva.coincidenLosDias(rangoDeFechas)
+        
+        return this.reservas.some(
+            unaReserva => unaReserva.estaLibreEn(rangoDeFechas)
         )
-        */
+        
 
 
     }
 
     tuPrecioEstaDentroDe(valorMinimo, valorMaximo) {
-        // TODO Implementar lógica
+        return this.precioPorNoche >= valorMinimo && this.precioPorNoche <= valorMaximo
     }
 
     tenesCaracteristica(caracteristica) {
-        // TODO Implementar lógica
-        // ? return this.caracteristicas.includes(caracteristica)
+        return this.caracteristicas.includes(caracteristica)
     }
 
     puedenAlojarse(cantHuespedes) {
-        // TODO Implementar lógica
-        // ? return cantHuespedes <= this.cantHuespedesMax
+        return cantHuespedes <= this.cantHuespedesMax
     }
 }
 
@@ -96,9 +94,25 @@ class Reserva {
     }
 
     actualizarEstado(EstadoReserva) { 
-        // Imagino que actualizar estado es el setter del atributo estado
-        // ? this.estado = EstadoReserva
+        // Imagino que actualizar estado es el setter del atributo estado (CONSULTAR)
+        this.estado = EstadoReserva
     }
+
+    estaLibreEn(fechaSolicitada) {
+        // Verdadero en caso que la fecha solicitada sea antes de una reserva existente
+        let fechaLibreAntes = fechaSolicitada.fechaFin < this.fechaAlta.fechaInicio
+        
+        // Verdadero en caso de que la fecha solicitada sea despues de una reserva existente
+        let fechaLibreDespues = fechaSolicitada.fechaInicio > this.fechaAlta.fechaFin
+
+
+        return fechaLibreAntes || fechaLibreDespues
+    }
+
+
+
+
+
 }
 
 class RangoFechas {
@@ -138,8 +152,9 @@ class Notificacion {
     }
 
     marcarComoLeida() {
-        // Setter de atributo "leida" ?
-        // TODO implementar
+        // Setter de atributo "leida" 
+        this.leida = true
+        this.fechaLeida = new Date()
     }
 }
 
