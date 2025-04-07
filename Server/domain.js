@@ -133,18 +133,23 @@ class CambioEstadoReserva {
 
 class FactoryNotificacion {
     mensajeSegunEstado(reserva) {
-        switch (reserva.estado) {
+        
+        try {
+            switch (reserva.estado) {
             case EstadoReserva.PENDIENTE:
                 return {contenido: "Su reserva está pendiente de confirmación.", destinatario: reserva.anfitrion};
             case EstadoReserva.CONFIRMADA:
                 return {contenido: "Su reserva ha sido confirmada.", destinatario: reserva.huespedReservador};
             case EstadoReserva.CANCELADA:
                 return {contenido: "Su reserva ha sido cancelada.", destinatario: reserva.anfitrion};
-            default:
-                return {contenido: "Estado de reserva desconocido.", destinatario: null};
-        }
+            }
+        } catch (error) {
+            console.error("Estado de reserva no valido ", error);
 
+        }
     }
+
+    
 
     crearSegunReserva(reserva) {
         const mensaje = this.mensajeSegunEstado(reserva)

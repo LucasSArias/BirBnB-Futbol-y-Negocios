@@ -39,3 +39,7 @@ BIRBNB
         - Se agrego el getter de fecha leida en Notificacion
 
         > Pendiente : Determinar comportamiento del sistema, consultar atributo FechaAlta en Notificacion y explicar GitFlow
+    
+    🔳 v0.4.1
+
+        - Hotfix: Se agrega manejo de errores al crear notificacion
