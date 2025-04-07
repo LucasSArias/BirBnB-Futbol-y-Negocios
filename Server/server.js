@@ -1,11 +1,17 @@
-require('./handlers.js')
-
 const express = require('express');
-const { serverOk } = require('./handlers');
 const app = express();
 const port = 9000 // * Puerto arbitrario para el servidor
 
-app.get('/health', (req, res) => serverOk(req, res)); // Endpoint de estado del servidor
+
+const SaludController = require('./controllers/health.controller')
+
+const router = express.Router();
+
+const saludController = new SaludController()
+
+app.use("/", router) // * Se le dice al servidor que use el router para manejar las rutas
+
+router.get('/health', (req, res) => saludController.health(req, res)) // * Se le dice al router que use el controlador de salud para manejar la ruta /health
 
 app.listen(port, () => {
     console.log('Servidor escuchando en el puerto ' + port);
