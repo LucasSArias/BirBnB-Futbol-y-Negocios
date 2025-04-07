@@ -29,7 +29,7 @@ BIRBNB
 
     🔳 v0.3.1
         
-        - Hotfix: El primer endpoint funciona como debe
+        - El primer endpoint funciona como debe
     
     🔳 v0.4.0
         
@@ -42,4 +42,4 @@ BIRBNB
     
     🔳 v0.4.1
 
-        - Hotfix: Se agrega manejo de errores al crear notificacion
+        - Se agrega manejo de errores al crear notificacion
