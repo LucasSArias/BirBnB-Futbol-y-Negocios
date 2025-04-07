@@ -132,34 +132,23 @@ class CambioEstadoReserva {
 }
 
 class FactoryNotificacion {
-    mensajeSegunEstado(estado) {
-        switch (estado) {
-            case EstadoReserva.PENDIENTE:
-                return "Su reserva está pendiente de confirmación.";
-            case EstadoReserva.CONFIRMADA:
-                return "Su reserva ha sido confirmada.";
-            case EstadoReserva.CANCELADA:
-                return "Su reserva ha sido cancelada.";
-            default:
-                return "Estado de reserva desconocido.";
-        }
-
-    }
-
-    usuarioSegunEstado(reserva) {
+    mensajeSegunEstado(reserva) {
         switch (reserva.estado) {
             case EstadoReserva.PENDIENTE:
-                return reserva.anfitrion
-            case EstadoReserva.CONFIRMADA: 
-                return reserva.huespedReservador
+                return {contenido: "Su reserva está pendiente de confirmación.", destinatario: reserva.anfitrion};
+            case EstadoReserva.CONFIRMADA:
+                return {contenido: "Su reserva ha sido confirmada.", destinatario: reserva.huespedReservador};
             case EstadoReserva.CANCELADA:
-                return reserva.anfitrion
-    
+                return {contenido: "Su reserva ha sido cancelada.", destinatario: reserva.anfitrion};
+            default:
+                return {contenido: "Estado de reserva desconocido.", destinatario: null};
         }
+
     }
 
     crearSegunReserva(reserva) {
-        return new Notificacion(mensajeSegunEstado(reserva.estado), usuarioSegunEstado(reserva), new Date())  //? FechaAlta es la fecha en la que se crea la notificación?
+        const mensaje = this.mensajeSegunEstado(reserva)
+        return new Notificacion(mensaje.contenido, mensaje.destinatario, new Date())  //? FechaAlta es la fecha en la que se crea la notificación?
     }
     
     
