@@ -176,11 +176,20 @@ class Notificacion {
     }
 }
 
+// Esto dice el enunciado:
+// Cada vez que se realice una reserva es necesario enviarle una notificación al Anfitrión, donde se le indique quién realizó la reserva, para cuándo, por cuántos días y sobre qué alojamiento.
+
 class Usuario {
     constructor(nombre, email, tipo) {
         this.nombre = nombre; // String
         this.email = email;   // String
         this.tipo = tipo;     // ENUM: TipoUsuario
+    }
+    
+    reservar(alojamiento, rangoFechas) {
+        let reserva = new Reserva(new Date(), this, alojamiento, rangoFechas, EstadoReserva.PENDIENTE, alojamiento.precioPorNoche)
+        FactoryNotificacion.crearSegunReserva(reserva) //? Será así?
+        // TODO : Chequear que no haya mas logica para implementar en siguientes entregas
     }
 }
 
