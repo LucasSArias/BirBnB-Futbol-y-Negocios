@@ -29,7 +29,7 @@ BIRBNB
 
     🔳 v0.3.1
         
-        - Hotfix: El primer endpoint funciona como debe
+        - El primer endpoint funciona como debe
     
     🔳 v0.4.0
         
@@ -39,3 +39,7 @@ BIRBNB
         - Se agrego el getter de fecha leida en Notificacion
 
         > Pendiente : Determinar comportamiento del sistema, consultar atributo FechaAlta en Notificacion y explicar GitFlow
+    
+    🔳 v0.4.1
+
+        - Se agrega manejo de errores al crear notificacion
