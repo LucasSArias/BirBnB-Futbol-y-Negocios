@@ -111,7 +111,7 @@ class Reserva {
     get anfitrion() {
         return this.alojamiento.anfitrion
     }
-    
+
 }
 
 class RangoFechas {
@@ -133,35 +133,32 @@ class CambioEstadoReserva {
 
 class FactoryNotificacion {
     mensajeSegunEstado(reserva) {
-        
-        try {
-            switch (reserva.estado) {
+        switch (reserva.estado) {
             case EstadoReserva.PENDIENTE:
-                return {contenido: "Su reserva está pendiente de confirmación.", destinatario: reserva.anfitrion};
+                return { contenido: "Su reserva está pendiente de confirmación.", destinatario: reserva.anfitrion };
             case EstadoReserva.CONFIRMADA:
-                return {contenido: "Su reserva ha sido confirmada.", destinatario: reserva.huespedReservador};
+                return { contenido: "Su reserva ha sido confirmada.", destinatario: reserva.huespedReservador };
             case EstadoReserva.CANCELADA:
-                return {contenido: "Su reserva ha sido cancelada.", destinatario: reserva.anfitrion};
-            }
-        } catch (error) {
-            console.error("Estado de reserva no valido ", error);
-
+                return { contenido: "Su reserva ha sido cancelada.", destinatario: reserva.anfitrion }
+            default:
+                console.error("Estado de reserva no valido ", error);
+                throw new Error("Estado de reserva no valido");
         }
     }
 
-    
+
 
     crearSegunReserva(reserva) {
         const mensaje = this.mensajeSegunEstado(reserva)
         return new Notificacion(mensaje.contenido, mensaje.destinatario, new Date())  //? FechaAlta es la fecha en la que se crea la notificación?
     }
-    
-    
+
+
 }
 
 class Notificacion {
-    
-    #fechaLeida 
+
+    #fechaLeida
     constructor(mensaje, usuario, fechaAlta) {
         this.mensaje = mensaje;       // String
         this.usuario = usuario;       // Usuario
@@ -169,7 +166,7 @@ class Notificacion {
         this.leida = false;           // Boolean
         // this.fechaLeida = fechaLeida; // Date
     }
-    
+
     marcarComoLeida() {
         // Setter de atributo "leida" 
         this.leida = true
