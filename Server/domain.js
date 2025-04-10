@@ -191,30 +191,29 @@ class Usuario {
 
 // ENUMS. Son similares a los constructores en haskell para crear un "nuevo tipo de dato"
 // cada static es un valor que puede tomar el tipo de dato.
+const TipoUsuario = {
+    HUESPED: "HUESPED",
+    ANFITRION: "ANFITRION"
+};
 
-class TipoUsuario {
-    static HUESPED = "HUESPED";
-    static ANFITRION = "ANFITRION";
-}
+const Moneda = {
+    DOLAR_USA: "DOLAR_USA",
+    PESO_ARG: "PESO_ARG",
+    REALES: "REALES"
+};
 
-class Moneda {
-    static DOLAR_USA = "DOLAR_USA";
-    static PESO_ARG = "PESO_ARG";
-    static REALES = "REALES";
-}
+const Caracteristica = {
+    WIFI: "WIFI",
+    PISCINA: "PISCINA",
+    MASCOTAS_PERMITIDAS: "MASCOTAS_PERMITIDAS",
+    ESTACIONAMIENTO: "ESTACIONAMIENTO"
+};
 
-class Caracteristica {
-    static WIFI = "WIFI";
-    static PISCINA = "PISCINA";
-    static MASCOTAS_PERMITIDAS = "MASCOTAS_PERMITIDAS";
-    static ESTACIONAMIENTO = "ESTACIONAMIENTO";
-}
-
-class EstadoReserva {
-    static PENDIENTE = "PENDIENTE";
-    static CONFIRMADA = "CONFIRMADA";
-    static CANCELADA = "CANCELADA";
-}
+const EstadoReserva = {
+    PENDIENTE: "PENDIENTE",
+    CONFIRMADA: "CONFIRMADA",
+    CANCELADA: "CANCELADA"
+};
 
 
 
