@@ -116,7 +116,7 @@ class Reserva {
     get anfitrion() {
         return this.alojamiento.anfitrion
     }
-    
+
 }
 
 class RangoFechas {
@@ -138,35 +138,32 @@ class CambioEstadoReserva {
 
 class FactoryNotificacion {
     mensajeSegunEstado(reserva) {
-        
-        try {
-            switch (reserva.estado) {
+        switch (reserva.estado) {
             case EstadoReserva.PENDIENTE:
-                return {contenido: "Su reserva está pendiente de confirmación.", destinatario: reserva.anfitrion};
+                return { contenido: "Su reserva está pendiente de confirmación.", destinatario: reserva.anfitrion };
             case EstadoReserva.CONFIRMADA:
-                return {contenido: "Su reserva ha sido confirmada.", destinatario: reserva.huespedReservador};
+                return { contenido: "Su reserva ha sido confirmada.", destinatario: reserva.huespedReservador };
             case EstadoReserva.CANCELADA:
-                return {contenido: "Su reserva ha sido cancelada.", destinatario: reserva.anfitrion};
-            }
-        } catch (error) {
-            console.error("Estado de reserva no valido ", error);
-
+                return { contenido: "Su reserva ha sido cancelada.", destinatario: reserva.anfitrion }
+            default:
+                console.error("Estado de reserva no valido ", error);
+                throw new Error("Estado de reserva no valido");
         }
     }
 
-    
+
 
     crearSegunReserva(reserva) {
         const mensaje = this.mensajeSegunEstado(reserva)
         return new Notificacion(mensaje.contenido, mensaje.destinatario, new Date())  //? FechaAlta es la fecha en la que se crea la notificación?
     }
-    
-    
+
+
 }
 
 class Notificacion {
-    
-    #fechaLeida 
+
+    #fechaLeida
     constructor(mensaje, usuario, fechaAlta) {
         this.mensaje = mensaje;       // String
         this.usuario = usuario;       // Usuario
@@ -174,7 +171,7 @@ class Notificacion {
         this.leida = false;           // Boolean
         // this.fechaLeida = fechaLeida; // Date
     }
-    
+
     marcarComoLeida() {
         // Setter de atributo "leida" 
         this.leida = true
@@ -211,31 +208,32 @@ class Usuario {
     }
 }
 
-// Cada static es un valor que puede tomar el tipo de dato.
+// ENUMS. Son similares a los constructores en haskell para crear un "nuevo tipo de dato"
+// cada static es un valor que puede tomar el tipo de dato.
+const TipoUsuario = {
+    HUESPED: "HUESPED",
+    ANFITRION: "ANFITRION"
+};
 
-class TipoUsuario {
-    static HUESPED = "HUESPED";
-    static ANFITRION = "ANFITRION";
-}
+const Moneda = {
+    DOLAR_USA: "DOLAR_USA",
+    PESO_ARG: "PESO_ARG",
+    REALES: "REALES"
+};
 
-class Moneda {
-    static DOLAR_USA = "DOLAR_USA";
-    static PESO_ARG = "PESO_ARG";
-    static REALES = "REALES";
-}
+const Caracteristica = {
+    WIFI: "WIFI",
+    PISCINA: "PISCINA",
+    MASCOTAS_PERMITIDAS: "MASCOTAS_PERMITIDAS",
+    ESTACIONAMIENTO: "ESTACIONAMIENTO"
+};
 
-class Caracteristica {
-    static WIFI = "WIFI";
-    static PISCINA = "PISCINA";
-    static MASCOTAS_PERMITIDAS = "MASCOTAS_PERMITIDAS";
-    static ESTACIONAMIENTO = "ESTACIONAMIENTO";
-}
+const EstadoReserva = {
+    PENDIENTE: "PENDIENTE",
+    CONFIRMADA: "CONFIRMADA",
+    CANCELADA: "CANCELADA"
+};
 
-class EstadoReserva {
-    static PENDIENTE = "PENDIENTE";
-    static CONFIRMADA = "CONFIRMADA";
-    static CANCELADA = "CANCELADA";
-}
 
 
 
