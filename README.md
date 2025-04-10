@@ -43,3 +43,7 @@ BIRBNB
     🔳 v0.4.1
 
         - Se agrega manejo de errores al crear notificacion
+
+    🔳 v0.4.2
+
+        - Correcion de las clases que funcionaban como ENUM, en vez de clases son constantes que toman valores
