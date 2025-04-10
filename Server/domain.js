@@ -50,6 +50,11 @@ class Alojamiento {
     puedenAlojarse(cantHuespedes) {
         return cantHuespedes <= this.cantHuespedesMax
     }
+
+    crearReserva(huesped, rangoFechas){
+        let reserva = new Reserva(new Date(), huesped, this, rangoFechas, EstadoReserva.PENDIENTE, this.precioPorNoche)
+        return reserva
+    }
 }
 
 class Foto {
@@ -186,20 +191,27 @@ class Notificacion {
 
 class Usuario {
     constructor(nombre, email, tipo) {
-        this.nombre = nombre; // String
-        this.email = email;   // String
-        this.tipo = tipo;     // ENUM: TipoUsuario
+        this.nombre = nombre;     // String
+        this.email = email;       // String
+        this.tipo = tipo;         // ENUM: TipoUsuario
+        this.notificaciones = []  // Notificacion[]
     }
     
     reservar(alojamiento, rangoFechas) {
-        let reserva = new Reserva(new Date(), this, alojamiento, rangoFechas, EstadoReserva.PENDIENTE, alojamiento.precioPorNoche)
-        FactoryNotificacion.crearSegunReserva(reserva) //? Será así?
+        //let reserva = new Reserva(new Date(), this, alojamiento, rangoFechas, EstadoReserva.PENDIENTE, alojamiento.precioPorNoche)
+        let reserva = alojamiento.crearReserva(this, rangoFechas)
+        let notificacion = FactoryNotificacion.crearSegunReserva(reserva) //? Será así?
+
+        this.agregarNotificacion(notificacion) 
         // TODO : Chequear que no haya mas logica para implementar en siguientes entregas
+    }
+
+    agregarNotificacion(unaNotificacion) {
+        this.notificaciones.push(unaNotificacion)
     }
 }
 
-// ENUMS. Son similares a los constructores en haskell para crear un "nuevo tipo de dato"
-// cada static es un valor que puede tomar el tipo de dato.
+// Cada static es un valor que puede tomar el tipo de dato.
 
 class TipoUsuario {
     static HUESPED = "HUESPED";
