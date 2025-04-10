@@ -47,3 +47,7 @@ BIRBNB
     🔳 v0.4.2
 
         - Correcion de las clases que funcionaban como ENUM, en vez de clases son constantes que toman valores
+    
+    🔳 v0.4.3
+
+        - Se agregó la creación de una excepción para cuando haya un estado no válido en FactoryNotification
